@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.firebase.quickstart.fcm;
+package com.kevin.fcm;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -82,6 +82,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
     }
     // [END receive_message]
+
+    @Override
+    public void onDeletedMessages() {
+        super.onDeletedMessages();
+    }
 
 
     // [START on_new_token]

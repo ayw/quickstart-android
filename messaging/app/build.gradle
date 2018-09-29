@@ -5,7 +5,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        applicationId "com.google.firebase.quickstart.fcm"
+        applicationId "com.kevin.fcm"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1

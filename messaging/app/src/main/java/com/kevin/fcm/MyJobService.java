@@ -1,4 +1,4 @@
-package com.google.firebase.quickstart.fcm;
+package com.kevin.fcm;
 
 import android.util.Log;
 
