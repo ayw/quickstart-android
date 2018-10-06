@@ -18,10 +18,14 @@ package com.google.firebase.quickstart.fcm;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
+import android.support.test.filters.LargeTest;
 import android.view.View;
 
+<<<<<<< HEAD
 import com.kevin.fcm.MainActivity;
+=======
+import com.google.firebase.quickstart.fcm.java.MainActivity;
+>>>>>>> af840474aaa30fc3135687e7b6350edd95bded2f
 
 import org.junit.Rule;
 import org.junit.Test;

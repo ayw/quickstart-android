@@ -1,12 +1,12 @@
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,6 +34,11 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import static com.kevin.fcm.ThemeOptionHelpler.*;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create channel to show notifications.
-            String channelId  = getString(R.string.default_notification_channel_id);
+            String channelId = getString(R.string.default_notification_channel_id);
             String channelName = getString(R.string.default_notification_channel_name);
             NotificationManager notificationManager =
                     getSystemService(NotificationManager.class);
@@ -75,23 +80,38 @@ public class MainActivity extends AppCompatActivity {
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Subscribing to news topic");
+//                Log.d(TAG, "Subscribing to news topic");
                 // [START subscribe_topics]
-                FirebaseMessaging.getInstance().subscribeToTopic("news")
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                String msg = getString(R.string.msg_subscribed);
-                                if (!task.isSuccessful()) {
-                                    msg = getString(R.string.msg_subscribe_failed);
-                                }
-                                Log.d(TAG, msg);
-                                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                            }
-                        });
+//                FirebaseMessaging.getInstance().subscribeToTopic("news")
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                String msg = getString(R.string.msg_subscribed);
+//                                if (!task.isSuccessful()) {
+//                                    msg = getString(R.string.msg_subscribe_failed);
+//                                }
+//                                Log.d(TAG, msg);
+//                                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
                 // [END subscribe_topics]
+
+
+                Set<String> hasTags = new LinkedHashSet<>();
+                hasTags.add("pixel");
+                hasTags.add("need");
+
+                TagAliasBean tagAliasBean = new TagAliasBean();
+                tagAliasBean.action = ACTION_ADD;
+                sequence++;
+                tagAliasBean.tags = hasTags;
+
+                ThemeOptionHelpler.getInstance().themeAction(MainActivity.this, ++sequence, tagAliasBean);
+
+
             }
         });
+
 
         Button logTokenButton = findViewById(R.id.logTokenButton);
         logTokenButton.setOnClickListener(new View.OnClickListener() {
